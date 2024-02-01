@@ -44,40 +44,42 @@
 
 // export default Slider;
 
-
-import React, { useState, useRef } from 'react';
-import './Slider.css';
-
-import Main from '../page/Main';
-import Details from '../page/Details';
-import RSVP from '../page/RSVP';
-
 const Slider = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const touchStartY = useRef(null);
+  const [startY, setStartY] = useState(null);
 
   const handleTouchStart = (event) => {
-    touchStartY.current = event.touches[0].clientY;
+    setStartY(event.touches[0].clientY);
   };
 
   const handleTouchMove = (event) => {
-    if (touchStartY.current === null) return;
+    if (startY !== null) {
+      const deltaY = event.touches[0].clientY - startY;
 
-    const touchEndY = event.touches[0].clientY;
-    const deltaY = touchEndY - touchStartY.current;
+      if (deltaY > 50) {
+        // Swipe down
+        handleSwipe('down');
+      } else if (deltaY < -50) {
+        // Swipe up
+        handleSwipe('up');
+      }
 
-    if (deltaY > 50) {
-      // Swipe down
-      setCurrentPage((prevPage) => (prevPage < 3 ? prevPage + 1 : 1));
-    } else if (deltaY < -50) {
-      // Swipe up
-      setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : 3));
+      setStartY(null);
     }
+  };
 
-    touchStartY.current = null;
+  const handleSwipe = (direction) => {
+    if (direction === 'down' && currentPage < 3) {
+      // Swipe down to the next page
+      setCurrentPage((prevPage) => prevPage + 1);
+    } else if (direction === 'up' && currentPage > 1) {
+      // Swipe up to the previous page
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
   };
 
   const handleDotClick = (pageNumber) => {
+    // Handle dot click and update the current page
     setCurrentPage(pageNumber);
   };
 
@@ -104,5 +106,3 @@ const Slider = () => {
     </div>
   );
 };
-
-export default Slider;

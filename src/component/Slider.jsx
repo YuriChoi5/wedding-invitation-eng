@@ -47,7 +47,6 @@
 
 import React, { useState, useEffect } from 'react';
 import './Slider.css';
-
 import Main from '../page/Main';
 import Details from '../page/Details';
 import RSVP from '../page/RSVP';
@@ -59,25 +58,29 @@ const Slider = () => {
   useEffect(() => {
     const handleTouchStart = (event) => {
       touchStartY = event.touches[0].clientY;
+      console.log('Touch Start Y:', touchStartY);
     };
 
     const handleTouchMove = (event) => {
       const deltaY = event.touches[0].clientY - touchStartY;
+      console.log('Touch Move Delta Y:', deltaY);
 
       if (deltaY > 50) {
         // Swipe down
-        handleSwipe('down');
+        handleSwipe('up');
       } else if (deltaY < -50) {
         // Swipe up
-        handleSwipe('up');
+        handleSwipe('down');
       }
     };
 
     const handleSwipe = (direction) => {
-      if (direction === 'down' && currentPage < 3) {
-        setCurrentPage((prevPage) => prevPage + 1);
-      } else if (direction === 'up' && currentPage > 1) {
-        setCurrentPage((prevPage) => prevPage - 1);
+      console.log('Swipe Direction:', direction);
+
+      if (direction === 'down') {
+        setCurrentPage((prevPage) => (prevPage < 3 ? prevPage + 1 : 1));
+      } else if (direction === 'up') {
+        setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : 3));
       }
     };
 

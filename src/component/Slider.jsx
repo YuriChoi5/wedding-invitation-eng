@@ -45,86 +45,9 @@
 // export default Slider;
 
 
-// import React, { useState, useEffect } from 'react';
-// import './Slider.css';
-// import Main from '../page/Main';
-// import Details from '../page/Details';
-// import RSVP from '../page/RSVP';
-
-// const Slider = () => {
-//   const [currentPage, setCurrentPage] = useState(1);
-//   let touchStartY = 0;
-
-//   useEffect(() => {
-//     const handleTouchStart = (event) => {
-//       touchStartY = event.touches[0].clientY;
-//       console.log('Touch Start Y:', touchStartY);
-//     };
-
-//     const handleTouchMove = (event) => {
-//       const deltaY = event.touches[0].clientY - touchStartY;
-//       console.log('Touch Move Delta Y:', deltaY);
-
-//       if (deltaY > 50) {
-//         // Swipe down
-//         handleSwipe('up');
-//       } else if (deltaY < -50) {
-//         // Swipe up
-//         handleSwipe('down');
-//       }
-//     };
-
-//     const handleSwipe = (direction) => {
-//       console.log('Swipe Direction:', direction);
-
-//       if (direction === 'down') {
-//         setCurrentPage((prevPage) => (prevPage < 3 ? prevPage + 1 : 1));
-//       } else if (direction === 'up') {
-//         setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : 3));
-//       }
-//     };
-
-//     document.body.addEventListener('touchstart', handleTouchStart);
-//     document.body.addEventListener('touchmove', handleTouchMove);
-
-//     return () => {
-//       document.body.removeEventListener('touchstart', handleTouchStart);
-//       document.body.removeEventListener('touchmove', handleTouchMove);
-//     };
-//   }, [currentPage]);
-
-//   const handleDotClick = (pageNumber) => {
-//     setCurrentPage(pageNumber);
-//   };
-
-//   return (
-//     <div className={`slider page-${currentPage}`}>
-//       <div className="page">
-//         {currentPage === 1 && <Main zoomOut={true} />}
-//         {currentPage === 2 && <Details />}
-//         {currentPage === 3 && <RSVP />}
-//       </div>
-//       <div className="dots">
-//         {[1, 2, 3].map((pageNumber) => (
-//           <div
-//             key={pageNumber}
-//             className={`dot ${currentPage === pageNumber ? 'active' : ''}`}
-//             onClick={() => handleDotClick(pageNumber)}
-//           />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Slider;
 
 
-
-
-
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Slider.css';
 
 import Main from '../page/Main';
@@ -133,7 +56,7 @@ import RSVP from '../page/RSVP';
 
 const Slider = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  let touchStartY = 0;
+  let touchStartY = useRef(0);
 
   useEffect(() => {
     const handleTouchStart = (event) => {

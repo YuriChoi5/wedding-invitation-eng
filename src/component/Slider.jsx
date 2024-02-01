@@ -46,7 +46,7 @@
 
 
 import React, { useState } from 'react';
-import { Swipeable } from 'react-swipeable';
+import  Swipeable  from 'react-swipeable';
 import './Slider.css';
 
 import Main from '../page/Main';

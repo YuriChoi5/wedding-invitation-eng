@@ -45,8 +45,7 @@
 // export default Slider;
 
 
-import React, { useState } from 'react';
-import  Swipeable  from 'react-swipeable';
+import React, { useState, useEffect } from 'react';
 import './Slider.css';
 
 import Main from '../page/Main';
@@ -55,41 +54,63 @@ import RSVP from '../page/RSVP';
 
 const Slider = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  let touchStartY = 0;
 
-  const handleSwipe = (direction) => {
-    if (direction === 'down' && currentPage < 3) {
-      setCurrentPage((prevPage) => prevPage + 1);
-    } else if (direction === 'up' && currentPage > 1) {
-      setCurrentPage((prevPage) => prevPage - 1);
-    }
-  };
+  useEffect(() => {
+    const handleTouchStart = (event) => {
+      touchStartY = event.touches[0].clientY;
+    };
+
+    const handleTouchMove = (event) => {
+      const deltaY = event.touches[0].clientY - touchStartY;
+
+      if (deltaY > 50) {
+        // Swipe down
+        handleSwipe('down');
+      } else if (deltaY < -50) {
+        // Swipe up
+        handleSwipe('up');
+      }
+    };
+
+    const handleSwipe = (direction) => {
+      if (direction === 'down' && currentPage < 3) {
+        setCurrentPage((prevPage) => prevPage + 1);
+      } else if (direction === 'up' && currentPage > 1) {
+        setCurrentPage((prevPage) => prevPage - 1);
+      }
+    };
+
+    document.body.addEventListener('touchstart', handleTouchStart);
+    document.body.addEventListener('touchmove', handleTouchMove);
+
+    return () => {
+      document.body.removeEventListener('touchstart', handleTouchStart);
+      document.body.removeEventListener('touchmove', handleTouchMove);
+    };
+  }, [currentPage]);
 
   const handleDotClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
   return (
-    <Swipeable
-      onSwipedUp={() => handleSwipe('up')}
-      onSwipedDown={() => handleSwipe('down')}
-    >
-      <div className={`slider page-${currentPage}`}>
-        <div className="page">
-          {currentPage === 1 && <Main zoomOut={true} />}
-          {currentPage === 2 && <Details />}
-          {currentPage === 3 && <RSVP />}
-        </div>
-        <div className="dots">
-          {[1, 2, 3].map((pageNumber) => (
-            <div
-              key={pageNumber}
-              className={`dot ${currentPage === pageNumber ? 'active' : ''}`}
-              onClick={() => handleDotClick(pageNumber)}
-            />
-          ))}
-        </div>
+    <div className={`slider page-${currentPage}`}>
+      <div className="page">
+        {currentPage === 1 && <Main zoomOut={true} />}
+        {currentPage === 2 && <Details />}
+        {currentPage === 3 && <RSVP />}
       </div>
-    </Swipeable>
+      <div className="dots">
+        {[1, 2, 3].map((pageNumber) => (
+          <div
+            key={pageNumber}
+            className={`dot ${currentPage === pageNumber ? 'active' : ''}`}
+            onClick={() => handleDotClick(pageNumber)}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 

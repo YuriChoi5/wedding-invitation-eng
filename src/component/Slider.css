@@ -1,0 +1,43 @@
+
+.slider {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  max-width: 550px;
+  background-color: rgb(24, 23, 23);
+  
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transition: transform 0.5s ease-in-out;
+}
+
+
+.dots {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #333;
+}

@@ -1,0 +1,66 @@
+.background2 {
+  background-image: url("/public/hands.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Cinzel", serif;
+  color: azure;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.background2 div {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.background2 div.visible {
+  opacity: 1;
+}
+
+.background2 div a {
+  opacity: 1;
+  color: rgb(132, 242, 242);
+  text-decoration: none;
+  font-size: 1.3rem;
+  margin: .4rem 0;
+  border-bottom: 1px solid azure;
+  font-family: 'Bungee', sans-serif;
+
+}
+
+.vertical-line {
+  position: relative;
+  border-left: 1px solid azure;
+  height: 2.5rem;
+  left: 50%;
+  margin: 1rem 0;
+}
+
+div.visible.address {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Cinzel", serif;
+  color: azure;
+  font-size: 1.3rem;
+  padding: 0 2rem;
+
+}
+
+/* a {
+  color: rgb(132, 242, 242);
+  text-decoration: none;
+  font-size: 1.6rem;
+  margin: .6rem 0;
+  border-bottom: 1px solid azure;
+  font-family: 'Bungee', sans-serif;
+
+} */

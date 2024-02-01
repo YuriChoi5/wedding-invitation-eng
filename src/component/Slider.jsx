@@ -44,6 +44,14 @@
 
 // export default Slider;
 
+
+
+import React, { useState } from 'react';
+import './Slider.css';
+import Main from '../page/Main';
+import Details from '../page/Details';
+import RSVP from '../page/RSVP';
+
 const Slider = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [startY, setStartY] = useState(null);
@@ -106,3 +114,4 @@ const Slider = () => {
     </div>
   );
 };
+export default Slider;

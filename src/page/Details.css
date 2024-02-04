@@ -43,15 +43,15 @@
 }
 
 div.visible.address {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
   font-family: "Cinzel", serif;
   color: azure;
   font-size: 1.3rem;
   padding: 0 2rem;
+
+  a {
+    font-size: 1.2rem; /* Change this value to your desired font size */
+  }
 
 }
 

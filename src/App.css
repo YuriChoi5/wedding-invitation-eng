@@ -18,13 +18,17 @@ html {
 
 body {
   background-color: rgb(24, 23, 23);
-  max-width: 550px;
+  max-width: 768px;
   margin: 0 auto;
   /* display: flex;
   align-items: center;
   justify-content: center; */
 
+}
 
-
-  
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+  body {
+    max-width: 100%; /* or another value suitable for mobile devices */
+  }
 }

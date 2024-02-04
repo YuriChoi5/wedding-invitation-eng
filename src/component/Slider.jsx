@@ -44,37 +44,31 @@
 
 // export default Slider;
 
-import React, { useState, useEffect, useRef } from "react";
-import "./Slider.css";
+import React, { useState, useEffect, useRef } from 'react';
+import './Slider.css';
 
-import Main from "../page/Main";
-import Details from "../page/Details";
-import RSVP from "../page/RSVP";
+import Main from '../page/Main';
+import Details from '../page/Details';
+import RSVP from '../page/RSVP';
 
 const Slider = () => {
   const [currentPage, setCurrentPage] = useState(1);
   let touchStartY = useRef(0);
-  console.log(touchStartY);
 
   useEffect(() => {
     const handleTouchStart = (event) => {
-      console.log("handleTouchStart");
-
       touchStartY = event.touches[0].clientY;
-      console.log(touchStartY);
     };
 
     const handleTouchMove = (event) => {
       const deltaY = event.touches[0].clientY - touchStartY;
-      console.log("handleTouchMove");
-      console.log(deltaY);
 
       if (deltaY > 50) {
         // Swipe down
-        handleSwipe("down");
+        handleSwipe('down');
       } else if (deltaY < -50) {
         // Swipe up
-        handleSwipe("up");
+        handleSwipe('up');
       }
     };
 
@@ -87,31 +81,28 @@ const Slider = () => {
     };
 
     const handleScroll = (event) => {
-      console.log("handleScroll");
-
       // Uncomment the next line if you want to prevent the default scroll behavior
       // event.preventDefault();
 
       const scrollDelta = event.deltaY;
-      console.log(scrollDelta);
 
       if (scrollDelta > 0) {
         // Scroll down
-        handleSwipe("down");
+        handleSwipe('down');
       } else if (scrollDelta < 0) {
         // Scroll up
-        handleSwipe("up");
+        handleSwipe('up');
       }
     };
 
-    document.body.addEventListener("touchstart", handleTouchStart);
-    document.body.addEventListener("touchmove", handleTouchMove);
-    document.body.addEventListener("wheel", handleScroll);
+    document.body.addEventListener('touchstart', handleTouchStart);
+    document.body.addEventListener('touchmove', handleTouchMove);
+    document.body.addEventListener('wheel', handleScroll);
 
     return () => {
-      document.body.removeEventListener("touchstart", handleTouchStart);
-      document.body.removeEventListener("touchmove", handleTouchMove);
-      document.body.removeEventListener("wheel", handleScroll);
+      document.body.removeEventListener('touchstart', handleTouchStart);
+      document.body.removeEventListener('touchmove', handleTouchMove);
+      document.body.removeEventListener('wheel', handleScroll);
     };
   }, [currentPage]);
 
@@ -121,16 +112,16 @@ const Slider = () => {
 
   return (
     <div className={`slider page-${currentPage}`}>
-      <div className="page">
+      <div className='page'>
         {currentPage === 1 && <Main zoomOut={true} />}
         {currentPage === 2 && <Details />}
         {currentPage === 3 && <RSVP />}
       </div>
-      <div className="dots">
+      <div className='dots'>
         {[1, 2, 3].map((pageNumber) => (
           <div
             key={pageNumber}
-            className={`dot ${currentPage === pageNumber ? "active" : ""}`}
+            className={`dot ${currentPage === pageNumber ? 'active' : ''}`}
             onClick={() => handleDotClick(pageNumber)}
           />
         ))}

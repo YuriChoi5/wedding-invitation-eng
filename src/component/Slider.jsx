@@ -77,9 +77,9 @@ const Slider = () => {
 
     const handleSwipe = (direction) => {
       if (direction === 'down') {
-        setCurrentPage((prevPage) => (prevPage < 3 ? prevPage + 1 : 1));
+        setCurrentPage((prevPage) => (prevPage === 1 ? 3 : prevPage - 1));
       } else if (direction === 'up') {
-        setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : 3));
+        setCurrentPage((prevPage) => (prevPage === 3 ? 1 : prevPage + 1));
       }
     };
 

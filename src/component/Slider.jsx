@@ -58,7 +58,7 @@ const Slider = () => {
 
   useEffect(() => {
     const handleTouchStart = (event) => {
-      onsole.log("handleTouchStart");
+      console.log("handleTouchStart");
 
       touchStartY = event.touches[0].clientY;
       console.log(touchStartY);

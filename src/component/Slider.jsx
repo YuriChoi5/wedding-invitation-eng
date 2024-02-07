@@ -87,11 +87,11 @@ const Slider = () => {
       const scrollDelta = event.deltaY;
 
       if (scrollDelta > 0) {
-        // Scroll down
-        handleSwipe('down');
-      } else if (scrollDelta < 0) {
         // Scroll up
         handleSwipe('up');
+      } else if (scrollDelta < 0) {
+        // Scroll down
+        handleSwipe('down');
       }
     };
 

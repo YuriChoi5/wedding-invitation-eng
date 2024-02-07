@@ -7,7 +7,7 @@ const Details = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setVisibleLines((prevLines) => prevLines + 1);
-    }, 500);
+    }, 300);
 
     if (visibleLines === 4) {
       clearInterval(interval);

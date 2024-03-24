@@ -11,8 +11,10 @@ const RSVP = () => {
         target="_blank"
         rel="noreferrer"
       >
-        RSVP
+        RSVP HERE
       </a>
+      <a href="https://maps.app.goo.gl/J9pohsjFvQXXSX6w9" className="things-todo-link" target="_blank"
+        rel="noreferrer"> <h2>Things to do in Korea</h2></a>
       <img src="./laughter.jpg" alt="RSVP" border="0"></img>
       <h3>Love, Dmitry & Yuri</h3>
     </div>
